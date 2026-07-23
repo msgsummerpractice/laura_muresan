@@ -16,10 +16,8 @@ public class Folder {
     }
 
     public void init() {
+        System.out.println("Folder is initialized.");
         file1.init();
         file2.init();
-        System.out.println("File1 is initialized.");
-        System.out.println("File2 is initialized.");
-        
     }
 }

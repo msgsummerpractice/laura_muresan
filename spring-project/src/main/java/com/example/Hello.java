@@ -1,11 +1,8 @@
 package com.example;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
+import org.springframework.stereotype.Component;
+@Component
 public class Hello {
-    @Bean
     public String sayHello() {
         return "Hello, Spring!";
     }
