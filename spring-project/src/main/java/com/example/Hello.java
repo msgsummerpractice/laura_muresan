@@ -1,9 +1,13 @@
 package com.example;
 
-public class Hello {
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-    public void sayHello() {
-        System.out.println("Hello, Spring!");
+@Configuration
+public class Hello {
+    @Bean
+    public String sayHello() {
+        return "Hello, Spring!";
     }
     
 }
