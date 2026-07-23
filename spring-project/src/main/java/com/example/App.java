@@ -14,6 +14,6 @@ public class App {
         Hello hello = context.getBean(Hello.class);
         System.out.println(hello.sayHello());
         ((AnnotationConfigApplicationContext) context).close();
-        
     }
 }
+
