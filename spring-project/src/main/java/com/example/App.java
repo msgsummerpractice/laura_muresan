@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.example")
 public class App {
     public static void main(String[] args) {
+
         ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
        // Hello hello = context.getBean(Hello.class);
 
