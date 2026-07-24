@@ -1,5 +1,6 @@
 package com.example.Controller;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,14 @@ import com.example.Service.UserService;
 public class UserController {
     @Autowired private UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Value("${app.user.defaultName}")
+    private String defaultName;
+    @GetMapping("/users/default")
+    public String getDefaultUser() {
+        return "Default name is " + defaultName;
+    }
+
     @GetMapping
     public List<User> getAllUsers() {
         logger.info("Fetching all users");
