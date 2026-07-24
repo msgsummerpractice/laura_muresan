@@ -6,7 +6,7 @@
 .vscode/
 *.iml
 *.iws
-.projectS
+.project
 .classpath
 .settings/
  
