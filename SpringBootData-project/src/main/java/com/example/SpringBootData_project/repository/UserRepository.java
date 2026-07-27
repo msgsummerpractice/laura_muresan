@@ -14,8 +14,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public Optional<User> findByEmail(String email);
     public Optional<User> findByFirstName(String firstName);
 
-    public List<User> findTop10ByFirstNameIgnoreCaseOrderByFirstNameAsc();
+    public List<User> findTop10ByOrderByFirstNameAsc();
 
-    @Query("SELECT COUNT(*) FROM User")
+    @Query("SELECT COUNT(*) FROM users u")
     public long countUsers();
 }
