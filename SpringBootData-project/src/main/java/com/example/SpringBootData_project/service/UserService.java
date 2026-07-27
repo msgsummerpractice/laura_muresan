@@ -16,8 +16,8 @@ public class UserService implements IUserService {
         return userRepository.findByEmail(email).orElse(null);
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+    public User findByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName).orElse(null);
     }
 
     public void addUser(User user) {
@@ -28,11 +28,11 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
     public List<User> getAllUsers() {

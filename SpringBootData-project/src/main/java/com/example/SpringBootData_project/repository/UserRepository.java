@@ -7,8 +7,10 @@ import java.util.Optional;
 import com.example.SpringBootData_project.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
     
     public Optional<User> findByEmail(String email);
-    public Optional<User> findByUsername(String username);
+    public Optional<User> findByFirstName(String firstName);
+
+    
 }

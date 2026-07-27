@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
 
-import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,7 +21,7 @@ public class UserServiceTest {
    private UserService userService;
     @Mock
     private UserRepository userRepository;
-    User user = new User("1", "John", "Doe", "john.doe@example.com", 50000);
+    User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
 
     @Test
     public void findByEmail_returnsUser_WhenEmailExists() {
@@ -33,9 +32,9 @@ public class UserServiceTest {
     }
     
     @Test 
-    public void findByUsername_returnsUser_WhenUsernameExists() {
-        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
-        User result = userService.findByUsername("John");
+    public void findByFirstName_returnsUser_WhenFirstNameExists() {
+        Mockito.when(userRepository.findByFirstName(Mockito.anyString())).thenReturn(Optional.of(user));
+        User result = userService.findByFirstName("John");
         assertEquals(result, user);
     }
 
@@ -47,22 +46,22 @@ public class UserServiceTest {
 
     @Test
     public void updateUser_savesUser_WhenUserIsValid() {
-        Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(user));
+        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
         userService.updateUser(user);
         Mockito.verify(userRepository, Mockito.times(1)).save(user);
     }
 
     @Test
     public void deleteUser_deletesUser_WhenIdExists() {
-        Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(user));
-        userService.deleteUser(1L);
-        Mockito.verify(userRepository, Mockito.times(1)).deleteById(1L);
+        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+        userService.deleteUser(1);
+        Mockito.verify(userRepository, Mockito.times(1)).deleteById(1);
     }
 
     @Test
     public void getUserById_returnsUser_WhenIdExists() {
-        Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(user));
-        User result = userService.getUserById(1L);
+        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+        User result = userService.getUserById(1);
         assertEquals(result, user);
     }
 
