@@ -1,9 +1,10 @@
-package com.example.Repository;
+package com.example.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import com.example.Model.User;
+
+import com.example.model.User;
 
 @Repository
 public class UserRepository implements IRepository<User> {
@@ -18,7 +19,7 @@ public class UserRepository implements IRepository<User> {
         return users;
     }
 
-    public Iterable<User> saveAll(List<User> customers) {
+    public List<User> saveAll(List<User> customers) {
         users.addAll(customers);
         return customers;
     }
