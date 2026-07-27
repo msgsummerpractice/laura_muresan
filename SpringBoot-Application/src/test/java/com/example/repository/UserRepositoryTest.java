@@ -19,7 +19,7 @@ public class UserRepositoryTest {
     @Test
     void saveAll_returnsEmptyList_whenNoValidUsersAdded() {
     
-    Iterable<User> allCustomer = userRepository.saveAll(customers);
+    List<User> allCustomer = userRepository.saveAll(customers);
 
     boolean allSaved = stream(allCustomer.spliterator(), false)
             .allMatch(customer -> customer.getId() != null && customer.getAge() > 0 && customer.getName() != null);

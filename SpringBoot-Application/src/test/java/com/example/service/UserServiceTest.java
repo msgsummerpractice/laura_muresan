@@ -3,20 +3,27 @@ package com.example.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import com.example.service.UserService;
+import com.example.repository.UserRepository;
+import org.mockito.Mock;
 
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-@MockitoBean
+@InjectMocks
    private UserService userService;
-   @BeforeEach
+   
+    @Mock
+    private UserRepository userRepository;
+
+    @BeforeEach
     public void setUp() {
-        userService = new UserService(new com.example.repository.UserRepository());
-        userService.add(new com.example.model.User("1", 25, "John Doe"));
-        userService.add(new com.example.model.User("2", 30, "Jane Doe"));
+        userService = new UserService(userRepository);
     }
-    
+        
     @Test
     public void testGetUserCount_returnsZero_WhenListIsEmpty() {
         Mockito.when(userService.getUserCount()).thenReturn(0);
