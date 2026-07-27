@@ -9,7 +9,7 @@ import java.util.Optional;
 import com.example.SpringBootData_project.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
     
     public Optional<User> findByEmail(String email);
     public Optional<User> findByFirstName(String firstName);
