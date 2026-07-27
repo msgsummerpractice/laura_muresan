@@ -1,13 +1,15 @@
-package com.example.Service;
-import com.example.Repository.UserRepository;
-import com.example.Model.User;
+package com.example.service;
+import com.example.model.User;
+
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.repository.UserRepository;
 import java.util.List;
 
 
 @Service
-public class UserService implements IService {
+public class UserService implements IUserService {
 
     @Autowired private UserRepository userRepository;
     

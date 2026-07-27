@@ -1,5 +1,6 @@
-package com.example.Service;
+package com.example.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.AppProperties;
@@ -7,7 +8,7 @@ import com.example.AppProperties;
 @Service
 public class AppInfoService {
     
-    private final AppProperties appProperties;
+    @Autowired private final AppProperties appProperties;
 
     public AppInfoService(AppProperties appProperties) {
         this.appProperties = appProperties;
