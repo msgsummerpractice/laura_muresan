@@ -2,11 +2,10 @@ package com.example.repository;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static java.util.stream.StreamSupport.stream;
 import java.util.Arrays;
 import java.util.List;
 import com.example.model.User;
-import com.example.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 
 public class UserRepositoryTest {
     private UserRepository userRepository;
@@ -16,16 +15,16 @@ public class UserRepositoryTest {
             new User("3", 22, "Alice Smith")
     );
 
+    @BeforeEach
+    void setUp() {
+        userRepository = new UserRepository();
+    }
+
     @Test
     void saveAll_returnsEmptyList_whenNoValidUsersAdded() {
-    
-    List<User> allCustomer = userRepository.saveAll(customers);
-
-    boolean allSaved = stream(allCustomer.spliterator(), false)
-            .allMatch(customer -> customer.getId() != null && customer.getAge() > 0 && customer.getName() != null);
-
-    assert(allSaved);
-}
+        boolean allValid = userRepository.saveAll(customers).stream().allMatch(customer -> customer.getId() != null && customer.getAge() > 0 && customer.getName() != null);
+        assert(allValid);
+    }
 
     @Test
     void getAll_returnsZero_whenNoUsersAdded() {
