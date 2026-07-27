@@ -34,4 +34,5 @@ public class User {
     private String email;
     @Column(name = "salary")
     private float salary;
-}
+    }
+

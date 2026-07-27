@@ -1,10 +1,14 @@
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\config\OpenApiConfig.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\controller\UserController.java
-C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\request\annotations\Email.java
-C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\request\annotations\NotBlank.java
-C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\request\annotations\Positive.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\request\UpdateUserRequest.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\request\UserRequest.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\response\ErrorResponse.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\response\PagedResponse.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\dto\response\UserResponse.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\exception\DuplicateEmailException.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\exception\GlobalExceptionHandler.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\exception\ResourceNotFoundException.java
+C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\mapper\UserMapper.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\model\User.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\repository\UserRepository.java
 C:\Training\laura_muresan\SpringBootData-project\src\main\java\com\example\SpringBootData_project\service\IUserService.java

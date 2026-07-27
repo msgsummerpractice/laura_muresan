@@ -1,18 +1,20 @@
 package com.example.SpringBootData_project.service;
 
+import com.example.SpringBootData_project.dto.request.UpdateUserRequest;
 import com.example.SpringBootData_project.dto.request.UserRequest;
 import com.example.SpringBootData_project.model.User;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IUserService {
 
     public User findByEmail(String email);
     public User findByFirstName(String firstName);
     public User addUser(UserRequest user);
-    public User updateUser(Long id,User user);
-    public User updateEmail(User user, String newEmail);
-    public User deleteUser(Long id);
+    public User updateUser(Long id, UserRequest user);
+    public User patchUser(Long id, UpdateUserRequest user);
+    public void deleteUser(Long id);
     public User getUserById(Long id);
-    public List<User> getAllUsers();
+    public Page<User> getAllUsers(Pageable pageable);
     
 }

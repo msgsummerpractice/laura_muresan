@@ -1,8 +1,8 @@
 package com.example.SpringBootData_project.dto.request;
 
-import com.example.SpringBootData_project.dto.request.annotations.Email;
-import com.example.SpringBootData_project.dto.request.annotations.NotBlank;
-import com.example.SpringBootData_project.dto.request.annotations.Positive;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,4 @@ public class UserRequest {
     @Positive(message = "Salary must be a positive number")
     private float salary;
 
-
-
-    
 }
