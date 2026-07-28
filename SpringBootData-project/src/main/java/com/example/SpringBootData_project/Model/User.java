@@ -34,5 +34,11 @@ public class User {
     private String email;
     @Column(name = "salary")
     private float salary;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "created_at")
+    private String createdAt;
+
+
     }
 

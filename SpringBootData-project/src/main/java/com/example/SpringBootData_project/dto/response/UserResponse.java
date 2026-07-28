@@ -1,5 +1,7 @@
 package com.example.SpringBootData_project.dto.response;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,6 @@ public class UserResponse {
     private String lastName;
     private String email;
     private float salary;
+    private LocalDateTime createdAt;
     
 }
