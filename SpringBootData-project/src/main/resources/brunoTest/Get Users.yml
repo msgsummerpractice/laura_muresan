@@ -1,0 +1,26 @@
+info:
+  name: Get Users
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/users/add
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Laura",
+        "lastName": "Muresan",
+        "email": "LAURAMURI@gmail.com",
+        "salary": 12.50,
+        "password":"laura126"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: This request retrieves a list of users from the JSONPlaceholder API.

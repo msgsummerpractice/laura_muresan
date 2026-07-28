@@ -10,6 +10,7 @@ import com.example.SpringBootData_project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,7 +42,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateUser(Long id, UserRequest request) {
+    public User updateUser( Long id, UserRequest request) {
         User existing = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         userMapper.updateEntityFromRequest(existing, request);
@@ -70,7 +71,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Page<User> getAllUsers(Pageable pageable) {
+    public Page<User> getAllUsers(@NonNull Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 }

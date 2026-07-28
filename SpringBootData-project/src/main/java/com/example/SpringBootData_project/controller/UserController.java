@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -116,7 +117,7 @@ public class UserController {
     @PatchMapping(value = "/patch/{id}",
     consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
     produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<UserResponse> patchUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest updateUserRequest) {
+        public ResponseEntity<UserResponse> patchUser(@PathVariable @NonNull Long id, @Valid @RequestBody UpdateUserRequest updateUserRequest) {
         User patchedUser = userService.patchUser(id, updateUserRequest);
         UserResponse userResponse = userMapper.toResponse(patchedUser);
         return ResponseEntity.ok(userResponse);

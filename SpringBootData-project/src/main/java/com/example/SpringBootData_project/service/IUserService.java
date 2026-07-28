@@ -5,6 +5,7 @@ import com.example.SpringBootData_project.dto.request.UserRequest;
 import com.example.SpringBootData_project.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.lang.NonNull;
 
 public interface IUserService {
 
@@ -15,6 +16,6 @@ public interface IUserService {
     public User patchUser(Long id, UpdateUserRequest user);
     public void deleteUser(Long id);
     public User getUserById(Long id);
-    public Page<User> getAllUsers(Pageable pageable);
+    public Page<User> getAllUsers(@NonNull Pageable pageable);
     
 }

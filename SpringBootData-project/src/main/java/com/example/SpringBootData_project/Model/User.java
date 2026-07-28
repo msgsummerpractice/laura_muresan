@@ -3,6 +3,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import jakarta.persistence.Column;
@@ -37,8 +39,6 @@ public class User {
     @Column(name = "password")
     private String password;
     @Column(name = "created_at")
-    private String createdAt;
-
-
+    private LocalDateTime createdAt;
     }
 

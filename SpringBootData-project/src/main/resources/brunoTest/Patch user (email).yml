@@ -1,0 +1,25 @@
+info:
+  name: Patch user (email)
+  type: http
+  seq: 17
+
+http:
+  method: PATCH
+  url: http://localhost:8080/users/patch/1
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Laura",
+        "lastName": "Muresan",
+        "email": "laur1a_muresan@gmail.com",
+        "salary": 18.0,
+        "password":"qwerty45"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

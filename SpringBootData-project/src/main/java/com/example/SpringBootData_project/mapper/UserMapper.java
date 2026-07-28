@@ -1,10 +1,4 @@
 package com.example.SpringBootData_project.mapper;
-
-import java.util.Base64;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 import org.springframework.stereotype.Component;
 
 import com.example.SpringBootData_project.dto.request.UpdateUserRequest;
@@ -14,13 +8,14 @@ import com.example.SpringBootData_project.model.User;
 
 @Component
 public class UserMapper {
-    private static final String SECRET_KEY = "1234567890abcdef";
     public User toEntity(UserRequest userRequest) {
         User user = new User();
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
         user.setSalary(userRequest.getSalary());
+        user.setPassword(userRequest.getPassword());
+        user.setCreatedAt(java.time.LocalDateTime.now());
         return user;
     }
 
@@ -30,7 +25,6 @@ public class UserMapper {
         user.setEmail(userRequest.getEmail());
         user.setSalary(userRequest.getSalary());
         user.setPassword(userRequest.getPassword());
-        user.setCreatedAt(user.getCreatedAt());
     }
 
 
@@ -49,11 +43,11 @@ public class UserMapper {
 
     public UserResponse toResponse(User user) {
         UserResponse response = new UserResponse();
-        response.setId(user.getId());
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
         response.setEmail(user.getEmail());
         response.setSalary(user.getSalary());
+        response.setCreatedAt(user.getCreatedAt()); 
         return response;
     }
 }
