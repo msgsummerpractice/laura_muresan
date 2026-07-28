@@ -53,9 +53,18 @@ public class AuthServiceImpl implements AuthService {
             throw new DuplicateEmailException("Email already registered: " + request.getEmail());
         }
 
-        Role userRole = roleRepository.findByName(RoleType.USER)
+        RoleType roleType;
+        try {
+            roleType = RoleType.valueOf(
+                    request.getRole() != null ? request.getRole().toUpperCase() : "USER");
+        } catch (IllegalArgumentException e) {
+            roleType = RoleType.USER;
+        }
+        final RoleType resolvedRole = roleType;
+
+        Role userRole = roleRepository.findByName(resolvedRole)
                 .orElseThrow(() -> new RuntimeException(
-                        "USER role not found. Insert it first: INSERT INTO roles(name) VALUES('USER')"));
+                        resolvedRole + " role not found. Make sure it exists in the roles table."));
 
         User user = new User();
         user.setFirstName(request.getFirstName());

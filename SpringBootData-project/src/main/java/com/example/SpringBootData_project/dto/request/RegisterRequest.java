@@ -27,4 +27,5 @@ public class RegisterRequest {
     private String password;
 
     private boolean mfaEnabled;
+    private String role = "USER";
 }

@@ -43,8 +43,8 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
-    @Operation(summary = "Verify MultiFactor Authentification OTP and receive final JWT token")
-    @PostMapping("/verify_mfa")
+    @Operation(summary = "Verify MFA OTP and receive final JWT token")
+    @PostMapping("/verify-mfa")
     public ResponseEntity<SignInResponse> verifyMfa(@Valid @RequestBody MfaVerifyRequest request) {
         return ResponseEntity.ok(authService.verifyMfa(request));
     }
