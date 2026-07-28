@@ -21,52 +21,57 @@ public class UserServiceTest {
    private UserService userService;
     @Mock
     private UserRepository userRepository;
-    User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
 
     @Test
     public void findByEmail_returnsUser_WhenEmailExists() {
-        
-        Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(user));
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
+        Mockito.when(userRepository.findByEmail("john.doe@example.com")).thenReturn(Optional.of(user));
         User result = userService.findByEmail("john.doe@example.com");
         assertEquals(result, user);
     }
     
     @Test 
     public void findByFirstName_returnsUser_WhenFirstNameExists() {
-        Mockito.when(userRepository.findByFirstName(Mockito.anyString())).thenReturn(Optional.of(user));
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
+        Mockito.when(userRepository.findByFirstName("John")).thenReturn(Optional.of(user));
         User result = userService.findByFirstName("John");
         assertEquals(result, user);
     }
 
     @Test
     public void addUser_savesUser_WhenUserIsValid() {
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
         userService.addUser(user);
         Mockito.verify(userRepository, Mockito.times(1)).save(user);
     }
 
     @Test
     public void updateUser_savesUser_WhenUserIsValid() {
-        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
+        Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(user));
         userService.updateUser(user);
         Mockito.verify(userRepository, Mockito.times(1)).save(user);
     }
 
     @Test
     public void deleteUser_deletesUser_WhenIdExists() {
-        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
+        Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(user));
         userService.deleteUser(1);
         Mockito.verify(userRepository, Mockito.times(1)).deleteById(1);
     }
 
     @Test
     public void getUserById_returnsUser_WhenIdExists() {
-        Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(user));
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
+        Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(user));
         User result = userService.getUserById(1);
         assertEquals(result, user);
     }
 
     @Test
     public void getAllUsers_returnsListOfUsers() {
+        User user = new User(1, "John", "Doe", "john.doe@example.com", 50000);
         Mockito.when(userRepository.findAll()).thenReturn(java.util.Arrays.asList(user));
         java.util.List<User> result = userService.getAllUsers();
         assertEquals(result.size(), 1);
