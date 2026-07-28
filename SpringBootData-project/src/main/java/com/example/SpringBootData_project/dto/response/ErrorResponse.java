@@ -39,13 +39,6 @@ public class ErrorResponse {
         this.path = path;
     }
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class FieldErrorDetail {
-        private String field;
-        private String message;
-    }
+
     
 }

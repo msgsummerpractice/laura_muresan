@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.example.SpringBootData_project.dto.response.FieldErrorDetail;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,8 +39,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
-        List<ErrorResponse.FieldErrorDetail> fieldErrors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fe -> new ErrorResponse.FieldErrorDetail(fe.getField(), fe.getDefaultMessage()))
+        List<FieldErrorDetail> fieldErrors = ex.getBindingResult().getFieldErrors().stream()
+                .map(fe -> new FieldErrorDetail(fe.getField(), fe.getDefaultMessage()))
                 .collect(Collectors.toList());
 
         ErrorResponse body = new ErrorResponse(
