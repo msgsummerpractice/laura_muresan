@@ -7,7 +7,7 @@ import com.example.SpringBootData_project.dto.response.SignInResponse;
 import com.example.SpringBootData_project.dto.response.UserResponse;
 import com.example.SpringBootData_project.mapper.UserMapper;
 import com.example.SpringBootData_project.model.User;
-import com.example.SpringBootData_project.service.AuthService;
+import com.example.SpringBootData_project.service.IAuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private AuthService authService;
+    private IAuthService authService;
 
     @Autowired
     private UserMapper userMapper;

@@ -6,8 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class MfaChallengeResponse {
-
-    private final boolean mfaRequired = true;
+    
     private String challengeToken;
     private String otpCode;
 }
