@@ -1,35 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => { 
+"use strict";
+document.addEventListener("DOMContentLoaded", () => {
     const fetchBtn = document.getElementById("fetchBtn");
-    const img = document.getElementById("displayImage");
+    const img = document.querySelector(".displayImage");
     const errorDiv = document.getElementById("error");
- 
-    if (!fetchBtn) {
+    if (!fetchBtn || !img || !errorDiv) {
         return;
     }
- 
+    const url = "https://dog.ceo/api/breeds/image/random";
     fetchBtn.addEventListener("click", async () => {
- 
-        img.style.display = "none";
-        errorDiv.textContent = "";
- 
+        await fetchDogImage(url);
+    });
+    const fetchDogImage = async (url) => {
         try {
-            const response = await fetch("https://dog.ceo/api/breeds/image/random");
- 
-            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
- 
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
- 
-            if (data.status !== "success") throw new Error("API returned error");
- 
             img.src = data.message;
-            img.onload = () => {
-                img.style.display = "block";
-            };
-            img.onerror = () => {
-                errorDiv.textContent = "Failed to load image.";
-            };
-        } catch (err) {
+        }
+        catch (err) {
             errorDiv.textContent = "Error fetching dog image: " + err.message;
         }
-    });
+    };
 });
