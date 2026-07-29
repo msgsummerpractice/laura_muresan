@@ -221,7 +221,6 @@ class UserControllerTest {
     void patchUser_returns200_whenPartialUpdateIsValid() throws Exception {
         UpdateUserRequest req = new UpdateUserRequest();
         req.setFirstName("Patched");
-        // salary left null → @Positive is not triggered (nullable Float)
 
         mockMvc.perform(patch("/users/patch/" + testUser.getId())
                         .contentType(MediaType.APPLICATION_JSON)
