@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    private UserMapper userMapper;
+    UserMapper userMapper;
 
     @Override
     public User findByEmail(String email) {

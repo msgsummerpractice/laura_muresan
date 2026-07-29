@@ -14,5 +14,5 @@ public class UpdateUserRequest {
     private String email;   
 
     @Positive(message = "Salary must be a positive number")
-    private float salary;
+    private Float salary;
 }

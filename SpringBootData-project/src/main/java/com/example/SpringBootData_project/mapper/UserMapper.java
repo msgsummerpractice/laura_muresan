@@ -36,13 +36,17 @@ public class UserMapper {
         if (updateUserRequest.getLastName() != null) {
             user.setLastName(updateUserRequest.getLastName());
         }
-        if(updateUserRequest.getEmail() != null) {
+        if (updateUserRequest.getEmail() != null) {
             user.setEmail(updateUserRequest.getEmail());
+        }
+        if (updateUserRequest.getSalary() != null) {
+            user.setSalary(updateUserRequest.getSalary());
         }
     }
 
     public UserResponse toResponse(User user) {
         UserResponse response = new UserResponse();
+        response.setId(user.getId());
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
         response.setEmail(user.getEmail());
