@@ -28,7 +28,7 @@ public class ErrorResponse {
     private String path;
 
     @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "error")
+    @JacksonXmlProperty(localName = "fieldError")
     private List<FieldErrorDetail> fieldErrors;
 
     public ErrorResponse(LocalDateTime timestamp, int status, String error, String message, String path) {
