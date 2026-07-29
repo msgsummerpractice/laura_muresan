@@ -1,0 +1,25 @@
+info:
+  name: Delete succesful
+  type: http
+  seq: 8
+
+http:
+  method: DELETE
+  url: http://localhost:8080/users/delete/2
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Laura",
+        "lastName": "Muresan",
+        "email": "laura_muresan@gmail.com",
+        "salary": 18.00,
+        "password":"qwerty45"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
