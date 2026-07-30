@@ -1,0 +1,14 @@
+<form novalidate [formGroup]="loginFormGroup" (ngSubmit)="onFormSubmit()">
+  <label for="email">Email:</label>
+  <input type="text" id="email" formControlName="email" />
+  @if (loginFormGroup.controls.email.invalid) {
+    <small class="text-error">Email is required.</small>
+  }
+  <label for="password">Password:</label>
+  <input type="text" id="password" formControlName="password" />
+  @if (loginFormGroup.controls.password.invalid) {
+    <small class="text-error">Passowrd is required.</small>
+  }
+
+  <button type="submit" (click)="onFormSubmit()">Submit</button>
+</form>
