@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Pipe, PipeTransform, signal } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -7,10 +7,11 @@ import { AuthService } from '../auth/authService';
 import { DogService } from '../service';
 import { Auth } from '../auth/auth';
 import { RouterLink } from '@angular/router';
+import { RepeatPipe } from './pipe';
 
 @Component({
   selector: 'app-home',
-  imports: [MatButtonModule, MatToolbarModule, MatIconModule, Auth, RouterLink],
+  imports: [MatButtonModule, MatToolbarModule, MatIconModule, RouterLink, RepeatPipe],
   templateUrl: 'home.html',
   styleUrl: './home.css',
 })

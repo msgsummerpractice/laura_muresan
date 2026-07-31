@@ -7,7 +7,7 @@ import { authGuard } from './auth/activateGuard';
 import { confirmExitGuard } from './auth/deactivateGuard';
 
 export const routes: Routes = [
-  { path: '', component: Home, canActivate: [authGuard], canDeactivate: [confirmExitGuard] },
+  { path: '', component: Home },
   {
     path: 'login',
     loadComponent: () => import('./login/login').then((m) => m.Login),
