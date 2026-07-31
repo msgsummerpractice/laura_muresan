@@ -1,14 +1,22 @@
 <form novalidate [formGroup]="loginFormGroup" (ngSubmit)="onFormSubmit()">
   <label for="email">Email:</label>
   <input type="text" id="email" formControlName="email" />
-  @if (loginFormGroup.controls.email.invalid) {
+  @if (loginFormGroup.controls.email.hasError('required')) {
     <small class="text-error">Email is required.</small>
+  }
+  @if (loginFormGroup.controls.email.hasError('email')) {
+    <small class="text-error">Invalid email format.</small>
   }
   <label for="password">Password:</label>
   <input type="text" id="password" formControlName="password" />
-  @if (loginFormGroup.controls.password.invalid) {
+  @if (loginFormGroup.controls.password.hasError('required')) {
     <small class="text-error">Passowrd is required.</small>
   }
+  @if (loginFormGroup.controls.password.hasError('minlength')) {
+    <small class="text-error">Password must be at least 8 characters long.</small>
+  }
 
-  <button type="submit" (click)="onFormSubmit()">Submit</button>
+  <button type="submit" matButton [disabled]="loginFormGroup.invalid" (click)="onFormSubmit()">
+    Submit
+  </button>
 </form>

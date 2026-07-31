@@ -7,6 +7,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 type LoginForm = {
   email: FormControl<string>;
@@ -14,7 +15,7 @@ type LoginForm = {
 };
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButtonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -22,8 +23,8 @@ export class Login {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
 
   protected readonly loginFormGroup = this._formBuilder.group<LoginForm>({
-    email: this._formBuilder.control('', Validators.required),
-    password: this._formBuilder.control('', Validators.required),
+    email: this._formBuilder.control('', [Validators.required, Validators.email]),
+    password: this._formBuilder.control('', [Validators.required, Validators.minLength(5)]),
   });
 
   onFormSubmit(): void {
