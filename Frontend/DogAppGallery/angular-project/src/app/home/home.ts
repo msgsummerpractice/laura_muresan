@@ -36,8 +36,13 @@ export class Home {
     });
   }
 
-  login(): void {
-    this.authService.login();
+  login(email: string, password: string): void {
+    this.authService.login(email, password).subscribe({
+      next: (response) => {
+        console.log('Logged in successfully', response);
+      },
+      error: (err) => console.error('Login failed', err),
+    });
   }
 
   logout(): void {
