@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthResponse } from './AuthResponse';
+import { Observable, tap } from 'rxjs';
+import { LoginResponse, SignInResponse, isMfaChallengeResponse } from './AuthResponse';
 import { HttpClient } from '@angular/common/http';
 interface User {
   email: string;
@@ -9,27 +9,74 @@ interface User {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
+
   isAuthentificated = signal(false);
-  private currentUser = signal<User | null>(null);
-  user = this.currentUser.asReadonly();
+  private token = signal<string | null>(localStorage.getItem('authToken'));
+  private email = signal<string | null>(localStorage.getItem('email'));
+  private roles = signal<string[] | null>(JSON.parse(localStorage.getItem('roles') ?? '[]'));
+
+  pendingChallengeToken = signal<string | null>(null);
+  constructor() {
+    this.isAuthentificated.set(!!this.token());
+  }
   private apiUrl = 'http://localhost:8080/api/auth';
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, { email, password });
+
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>('${this.apiUrl}/login', { email, password }).pipe(
+      tap((response) => {
+        if (isMfaChallengeResponse(response)) {
+          this.pendingChallengeToken.set(response.challengeToken);
+        } else {
+          this.setSession(response);
+        }
+      }),
+    );
   }
 
-  public logout() {
+  verifyMfa(otpCode: string): Observable<SignInResponse> {
+    const challengeToken = this.pendingChallengeToken();
+    if (!challengeToken) {
+      throw new Error('No pending MFA challenge token found.');
+    }
+    return this.http
+      .post<SignInResponse>(`${this.apiUrl}/verify-mfa`, { challengeToken, otpCode })
+      .pipe(
+        tap((response) => {
+          this.setSession(response);
+        }),
+      );
+  }
+
+  private setSession(response: SignInResponse): void {
+    this.token.set(response.token);
+    this.email.set(response.email);
+    this.roles.set(response.roles);
+    this.isAuthentificated.set(true);
+    this.pendingChallengeToken.set(null);
+    localStorage.setItem('authToken', response.token);
+    localStorage.setItem('email', response.email);
+    localStorage.setItem('roles', JSON.stringify(response.roles));
+  }
+
+  public logout(): void {
+    this.token.set(null);
+    this.email.set(null);
+    this.roles.set(null);
     this.isAuthentificated.set(false);
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('email');
+    localStorage.removeItem('roles');
   }
 
-  getAuthToken(): string {
-    return 'your-auth-token';
+  getAuthToken(): string | null {
+    return this.token();
   }
 
-  get email(): string | null {
-    return this.currentUser()?.email || null;
+  getEmail(): string | null {
+    return this.email();
   }
 
-  get password(): string | null {
-    return this.currentUser()?.password || null;
+  getRoles(): string[] | null {
+    return this.roles();
   }
 }

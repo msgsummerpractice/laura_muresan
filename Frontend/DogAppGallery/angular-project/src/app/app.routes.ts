@@ -13,6 +13,9 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login').then((m) => m.Login),
   },
   {
+    path: 'mfa-verify',
+  },
+  {
     path: 'info',
     canActivate: [infoServiceGuard],
     canDeactivate: [confirmExitGuard],

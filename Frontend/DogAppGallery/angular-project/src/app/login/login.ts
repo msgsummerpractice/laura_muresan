@@ -1,10 +1,8 @@
 import { Component, inject } from '@angular/core';
 import {
-  FormBuilder,
   NonNullableFormBuilder,
   Validators,
   FormControl,
-  FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +34,13 @@ export class Login {
     if (this.loginFormGroup.valid) {
       const { email, password } = this.loginFormGroup.getRawValue();
       this.authService.login(email, password).subscribe({
+        next: (response) => {
+          if ('challengeToken' in response) {
+            this.router.navigate(['/mfa-verify']);
+          } else {
+            this.router.navigate(['/info']);
+          }
+        },
         error: (err) => {
           if (err.status === 401) {
             this.loginError = 'Invalid email or password.';

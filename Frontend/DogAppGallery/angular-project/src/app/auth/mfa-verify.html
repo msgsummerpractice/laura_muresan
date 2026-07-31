@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()">
+  <label for="otp">Enter the 6-digit code</label>
+  <input id="otp" type="text" inputmode="numeric" maxlength="6" [formControl]="otpControl" />
+  <button type="submit" [disabled]="otpControl.invalid">Verify</button>
+  @if (otpControl.hasError('required')) {
+    <small class="text-error">OTP is required.</small>
+  }
+  @if (otpControl.hasError('pattern')) {
+    <small class="text-error">OTP must be a 6-digit number.</small>
+  }
+</form>

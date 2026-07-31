@@ -8,5 +8,4 @@ import lombok.Getter;
 public class MfaChallengeResponse {
     
     private String challengeToken;
-    private String otpCode;
 }
