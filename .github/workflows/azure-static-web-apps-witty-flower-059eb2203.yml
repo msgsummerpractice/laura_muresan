@@ -43,7 +43,7 @@ jobs:
 
           skip_app_build: true
 
-          app_location: Frontend/DogAppGallery/angular-project/dist/angular-project/browser"
+          app_location: Frontend/DogAppGallery/angular-project/browser"
           output_location: ""
           api_location: ""
 
