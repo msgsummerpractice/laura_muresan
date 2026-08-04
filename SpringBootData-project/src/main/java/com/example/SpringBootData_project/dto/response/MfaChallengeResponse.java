@@ -9,5 +9,4 @@ public class MfaChallengeResponse {
 
     private boolean mfaRequired;
     private String challengeToken;
-    private String otpCode;
 }

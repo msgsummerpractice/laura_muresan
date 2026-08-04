@@ -3,7 +3,7 @@ import { forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../auth/authService';
+import { AuthService } from '../auth/auth.service';
 import { DogService } from '../service';
 import { Auth } from '../auth/auth';
 import { RouterLink } from '@angular/router';
@@ -36,8 +36,13 @@ export class Home {
     });
   }
 
-  login(): void {
-    this.authService.login();
+  login(email: string, password: string): void {
+    this.authService.login(email, password).subscribe({
+      next: (response) => {
+        console.log('Logged in successfully', response);
+      },
+      error: (err) => console.error('Login failed', err),
+    });
   }
 
   logout(): void {

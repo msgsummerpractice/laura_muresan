@@ -91,9 +91,9 @@ public class AuthService implements IAuthService {
                 .collect(Collectors.toList());
 
         if (user.isMfaEnabled()) {
-            String otp = mfaService.generateOtp(request.getEmail());
+            mfaService.generateOtp(request.getEmail());
             String challengeToken = jwtTokenProvider.generateMfaChallengeToken(request.getEmail());
-            return new MfaChallengeResponse(true, challengeToken, otp);
+            return new MfaChallengeResponse(challengeToken);
         }
 
         String token = jwtTokenProvider.generateToken(request.getEmail(), roles);

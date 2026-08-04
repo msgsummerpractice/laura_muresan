@@ -18,7 +18,7 @@ public class MfaService {
     private static final SecureRandom secureRandom = new SecureRandom();
 
     @Transactional
-    public String generateOtp(String email) {
+    public void generateOtp(String email) {
         ottRepository.deleteByEmail(email);
 
         String code = String.format("%06d", secureRandom.nextInt(1_000_000));
@@ -30,7 +30,7 @@ public class MfaService {
         token.setUsed(false);
         ottRepository.save(token);
 
-        return code;
+        System.out.println("Generated OTP for " + email + ": " + code);
     }
 
     @Transactional

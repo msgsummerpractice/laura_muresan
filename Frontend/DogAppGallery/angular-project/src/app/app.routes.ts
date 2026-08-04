@@ -13,6 +13,10 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login').then((m) => m.Login),
   },
   {
+    path: 'mfa-verify',
+    loadComponent: () => import('./mfa-verify/mfa-verify').then((m) => m.MfaVerify),
+  },
+  {
     path: 'info',
     canActivate: [infoServiceGuard],
     canDeactivate: [confirmExitGuard],
@@ -20,6 +24,3 @@ export const routes: Routes = [
   },
   { path: 'not-found', component: NotFoundComponent },
 ];
-bootstrapApplication(App, {
-  providers: [provideRouter(routes)],
-});
