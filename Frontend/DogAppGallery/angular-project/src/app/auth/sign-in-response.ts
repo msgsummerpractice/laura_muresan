@@ -1,4 +1,5 @@
-import { SignInResponse, MfaChallengeResponse } from './response.interfaces';
+import { SignInResponse } from './response.interfaces';
+import { MfaChallengeResponse } from './mfa-response-interface';
 
 export type LoginResponse = SignInResponse | MfaChallengeResponse;
 

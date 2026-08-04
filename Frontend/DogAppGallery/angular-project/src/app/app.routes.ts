@@ -14,7 +14,7 @@ export const routes: Routes = [
   },
   {
     path: 'mfa-verify',
-    loadComponent: () => import('./login/login').then((m) => m.Login),
+    loadComponent: () => import('./mfa-verify/mfa-verify').then((m) => m.MfaVerify),
   },
   {
     path: 'info',

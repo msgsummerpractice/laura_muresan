@@ -3,7 +3,3 @@ export interface SignInResponse {
   email: string;
   roles: string[];
 }
-
-export interface MfaChallengeResponse {
-  challengeToken: string;
-}
