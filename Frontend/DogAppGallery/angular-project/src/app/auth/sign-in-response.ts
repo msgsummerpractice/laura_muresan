@@ -1,12 +1,4 @@
-export interface SignInResponse {
-  token: string;
-  email: string;
-  roles: string[];
-}
-
-export interface MfaChallengeResponse {
-  challengeToken: string;
-}
+import { SignInResponse, MfaChallengeResponse } from './response.interfaces';
 
 export type LoginResponse = SignInResponse | MfaChallengeResponse;
 

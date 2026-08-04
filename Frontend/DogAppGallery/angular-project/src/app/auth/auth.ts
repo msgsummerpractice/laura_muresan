@@ -1,5 +1,5 @@
 import { Directive, TemplateRef, ViewContainerRef, inject, effect } from '@angular/core';
-import { AuthService } from './authService';
+import { AuthService } from './auth.service';
 
 @Directive({
   selector: '[appAuth]',

@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { LoginResponse, SignInResponse, isMfaChallengeResponse } from './AuthResponse';
+import { LoginResponse, isMfaChallengeResponse } from './sign-in-response';
+import { SignInResponse } from './response.interfaces';
 import { HttpClient } from '@angular/common/http';
 interface User {
   email: string;

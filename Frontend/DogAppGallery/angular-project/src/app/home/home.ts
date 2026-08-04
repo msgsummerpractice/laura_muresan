@@ -3,7 +3,7 @@ import { forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../auth/authService';
+import { AuthService } from '../auth/auth.service';
 import { DogService } from '../service';
 import { Auth } from '../auth/auth';
 import { RouterLink } from '@angular/router';
